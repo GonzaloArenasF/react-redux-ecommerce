@@ -1,0 +1,22 @@
+@import '../../styles/abstract/variables';
+
+header{
+    background-color: $color-xanadu;
+    padding: 20px 0px;
+
+    h2{
+        color: $color-isabelline;
+    }
+
+    .user-access{
+        float: right;
+
+        svg{
+            width: 36px;
+
+            path{
+                fill: $color-ash-grey;
+            }
+        }
+    }
+}

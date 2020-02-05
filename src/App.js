@@ -1,11 +1,16 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+
+// Components
+import HeaderSection from './components/header/header';
+import FooterSection from './components/footer/footer';
+import ProductListSection from './components/product-list/product-list';
 
 const App = () => (
   <main>
-    <header></header>
-    <section></section>
-    <footer></footer>
+    <HeaderSection />
+    <ProductListSection />
+    <FooterSection />
   </main>
 );
 
