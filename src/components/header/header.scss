@@ -3,6 +3,9 @@
 header{
     background-color: $color-xanadu;
     padding: 20px 0px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     h2{
         color: $color-isabelline;

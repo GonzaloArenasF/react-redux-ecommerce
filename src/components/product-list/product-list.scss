@@ -1,0 +1,42 @@
+@import '../../styles/abstract/variables';
+
+.product-list{
+    margin-bottom: 150px;
+    margin-top: 150px;
+    .product{
+        height: 100%;
+        padding: 10px;
+        text-align: center;
+
+        &:hover{
+            background-color: $color-ash-grey;
+        }
+
+        figure{
+            margin-bottom: 11px;
+
+            img{
+                height: 150px;
+            }
+
+            figcaption{
+                display: none;
+            }
+        }
+
+        h4{
+            margin-bottom: 9px;
+            text-transform: capitalize;
+        }
+
+        svg{
+            cursor: pointer;
+            margin-top: 10px;
+            width: 36px;
+
+            path{
+                fill: $color-deep-space-sparkle;
+            }
+        }
+    }
+}

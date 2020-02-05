@@ -19,15 +19,14 @@ class ProductListSection extends Component {
     renderProduct() {
         return this.props.books.map((book) => {
             return (
-                <div className="col-12 col-md-2">
+                <div className="col-12 col-md-3">
                     <article className="product">
                         <figure>
                             <img src={ book.image } alt={ book.title }></img>
-                            <figcaption>
-                                <h4>{ book.title }</h4>
-                            </figcaption>
+                            <figcaption>{ book.title } de { book.author }</figcaption>
                         </figure>
-                        <p>{book.author}</p>
+                        <h4>{ book.title }</h4>
+                        <p>{ book.author }</p>
                         <ShoppingCartAddingIcon />
                     </article>
                 </div>
@@ -37,7 +36,15 @@ class ProductListSection extends Component {
 
     render() {
         return (
-            <section className="container">
+            <section className="container product-list">
+                <div className="row">
+                    <div className="col-12">
+                        <h1>Books / Best Sellers</h1>
+                    </div>
+                    <div className="col-12">
+                        <p>The lists/names service returns a list of all the NYT Best Sellers Lists. Some lists are published weekly and others monthly. The response includes when each list was first published and last published.</p>
+                    </div>
+                </div>
                 <div className="row">
                     { this.renderProduct() }
                 </div>

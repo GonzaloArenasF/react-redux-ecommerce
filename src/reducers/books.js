@@ -8,7 +8,7 @@ const setBookData = (payload) => {
     return payload.map(book => {
         return {
             id: book.rank,
-            title: book.title,
+            title: book.title.toLowerCase(),
             author: book.author,
             image: book.book_image
         }
