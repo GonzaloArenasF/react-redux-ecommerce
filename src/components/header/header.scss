@@ -11,10 +11,13 @@ header{
         color: $color-isabelline;
     }
 
-    .user-access{
+    .icons-controls{
         float: right;
 
         svg{
+            cursor: pointer;
+            height: 36px;
+            margin-left: 10px;
             width: 36px;
 
             path{

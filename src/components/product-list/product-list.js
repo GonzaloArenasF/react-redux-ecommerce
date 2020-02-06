@@ -16,7 +16,8 @@ class ProductListSection extends Component {
         super();
 
         this.state = {
-            dataReady: false
+            books: [],
+            dataReady: false,
         }
     }
 
@@ -44,7 +45,7 @@ class ProductListSection extends Component {
                 <div className="row">
                     {
                         this.props.books.map(data => (
-                            <div className="col-12 col-md-3"> { Book(data) }</div>
+                            <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
                         ))
                     }
                 </div>

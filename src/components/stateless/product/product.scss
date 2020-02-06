@@ -6,7 +6,8 @@
     text-align: center;
 
     &:hover{
-        background-color: $color-ash-grey;
+        background-color: lighten($color-ash-grey, 20);
+        border-radius: 10px;
     }
 
     figure{
