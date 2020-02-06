@@ -13,13 +13,17 @@ import { ReactComponent as UserIcon } from '../../assets/images/icon-user.svg';
 import { ReactComponent as ShoppingCartIcon } from '../../assets/images/shopping-cart.svg';
 import { ReactComponent as LogoutIcon } from '../../assets/images/icon-logout.svg';
 
+// Stateless
+import { Loading } from '../stateless/loading/loading';
+
 class HeaderSection extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            hasToken: false
+            hasToken: false,
+            isAccesing: false
         }
     }
 
@@ -37,21 +41,23 @@ class HeaderSection extends Component {
         this.tokenServiceSubscription.unsubscribe();
     }
 
-    login() {
+    login = () => {
         const email = 'eve.holt@reqres.in';
         const password = 'cityslicka';
 
+        this.setState({ isAccesing: true });
         login(email, password)
             .then((response) => {
                 tokenService.setToken(response.data.token)
+                this.setState({ isAccesing: false });
             });
     }
 
-    showShoppingCart() {
+    showShoppingCart = () => {
         console.log('Shopping Access')
     }
 
-    logout() {
+    logout = () => {
         tokenService.removeToken();
     }
 
@@ -72,6 +78,10 @@ class HeaderSection extends Component {
                         </div>
                     </div>
                 </div>
+                {Loading({
+                    hasToken: this.state.isAccesing,
+                    message: 'Accesing'
+                })}
             </header>
         )
     }
