@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './header.scss';
 
 // Actions
-import { hasToken } from '../../actions';
+import {
+    login,
+    tokenService
+} from '../../actions';
 
 
 // Icons
@@ -21,17 +24,27 @@ class HeaderSection extends Component {
     }
 
     componentDidMount() {
-        this.tokenSubscription = hasToken().subscribe(
-            (hasToken) => this.setState({hasToken}),
-        )
+        this.tokenServiceSubscription = tokenService.hasToken.subscribe({
+            next: (hasToken) => {
+                this.setState({ hasToken });
+            },
+            error: err => console.error(err),
+            complete: () => console.log('completed')
+        });
     }
 
     componentWillUnmount() {
-        this.tokenSubscription.unsubscribe();
+        this.tokenServiceSubscription.unsubscribe();
     }
 
     login() {
-        console.log('Login')
+        const email = 'eve.holt@reqres.in';
+        const password = 'cityslicka';
+
+        login(email, password)
+            .then((response) => {
+                tokenService.setToken(response.data.token)
+            });
     }
 
     showShoppingCart() {
@@ -39,7 +52,7 @@ class HeaderSection extends Component {
     }
 
     logout() {
-        console.log('Logout')
+        tokenService.removeToken();
     }
 
     render() {

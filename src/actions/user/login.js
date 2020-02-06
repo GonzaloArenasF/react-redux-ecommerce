@@ -3,24 +3,31 @@ import axios from 'axios';
 
 const tokenStoragedName = 'ecommerce-token';
 
-export const DOING_LOGIN = 'DOING_LOGIN';
-export function login() {
-    const urlService = 'https://reqres.in/api/login';
+const setToken = (token) => (
+    localStorage.setItem(tokenStoragedName, token)
+);
 
-    return (dispatch, getState) => {
-        axios.get(urlService)
-            .then((response) => {
-                const token = (response.data.token) ? response.data.token : null;
-                const hasToken = (token) ? true : false;
-                if (hasToken) localStorage.setItem(tokenStoragedName, response.data.token)
-                dispatch({ type: DOING_LOGIN, payload: hasToken })
-            })
-    }
+const removeToken = () => {
+    localStorage.removeItem(tokenStoragedName);
 }
 
-export const hasToken = () => (
-    new Observable(subscriber => {
-        const ecommerceToken = localStorage.getItem(tokenStoragedName);
-        subscriber.next((ecommerceToken && ecommerceToken !== '') ? true : false);
-    })
-);
+const hasToken = new Observable((subscriber) => {
+    const intervalId = setInterval(() => {
+        subscriber.next((localStorage.getItem(tokenStoragedName)) ? true : false);
+    }, 1000);
+
+    return function unsubscribe() {
+        clearInterval(intervalId);
+    };
+});
+
+export const tokenService = {
+    hasToken,
+    removeToken,
+    setToken
+};
+
+export function login(email, password) {
+    const urlService = 'https://reqres.in/api/login';
+    return axios.post(urlService, { email, password });
+}

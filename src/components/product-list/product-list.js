@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { getBooks } from '../../actions';
+import {
+    getBooks,
+    tokenService
+} from '../../actions';
 
 // Stateless
 import { Book } from '../stateless/product/product';
@@ -17,12 +20,20 @@ class ProductListSection extends Component {
 
         this.state = {
             books: [],
-            dataReady: false,
+            hasToken: false,
         }
     }
 
     componentDidMount() {
         this.props.getBooks();
+
+        this.tokenServiceSubscription = tokenService.hasToken.subscribe({
+            next: (hasToken) => {
+                this.setState({ hasToken });
+            },
+            error: err => console.error(err),
+            complete: () => console.log('completed')
+        });
     }
 
     render() {
@@ -44,9 +55,10 @@ class ProductListSection extends Component {
                 </div>
                 <div className="row">
                     {
-                        this.props.books.map(data => (
-                            <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
-                        ))
+                        this.props.books.map(data => {
+                            data.hasToken = this.state.hasToken;
+                            return  <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
+                        })
                     }
                 </div>
             </section>

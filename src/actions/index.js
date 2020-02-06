@@ -4,16 +4,14 @@ import {
 } from './products/books';
 
 import {
-    DOING_LOGIN,
     login,
-    hasToken
+    tokenService
 } from './user/login';
 
 
 export {
     SHOW_BOOKS,
     getBooks,
-    DOING_LOGIN,
     login,
-    hasToken
+    tokenService
 };
