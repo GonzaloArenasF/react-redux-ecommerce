@@ -6,6 +6,7 @@
 }
 
 body{
+    color: $color-charleston-green;
     font-size: 14px;
     font-weight: $roboto-regular;
 }
@@ -22,4 +23,8 @@ h4{ font-size: 18px; }
 
 strong, b{
     font-weight: $roboto-bold;
+}
+
+p{
+    line-height: 20px;
 }

@@ -4,34 +4,24 @@ import { connect } from 'react-redux';
 // actions
 import { getBooks } from '../../actions';
 
+// Stateless
+import { Book } from '../stateless/product/product';
+
 // styles
 import './product-list.scss';
 
-// Icons
-import { ReactComponent as ShoppingCartAddingIcon } from '../../assets/images/shopping-cart-adding.svg';
-
 class ProductListSection extends Component {
 
-    componentWillMount() {
-        this.props.getBooks();
+    constructor() {
+        super();
+
+        this.state = {
+            dataReady: false
+        }
     }
 
-    renderProduct() {
-        return this.props.books.map((book) => {
-            return (
-                <div className="col-12 col-md-3">
-                    <article className="product">
-                        <figure>
-                            <img src={ book.image } alt={ book.title }></img>
-                            <figcaption>{ book.title } de { book.author }</figcaption>
-                        </figure>
-                        <h4>{ book.title }</h4>
-                        <p>{ book.author }</p>
-                        <ShoppingCartAddingIcon />
-                    </article>
-                </div>
-            )
-        });
+    componentDidMount() {
+        this.props.getBooks();
     }
 
     render() {
@@ -42,11 +32,21 @@ class ProductListSection extends Component {
                         <h1>Books / Best Sellers</h1>
                     </div>
                     <div className="col-12">
-                        <p>The lists/names service returns a list of all the NYT Best Sellers Lists. Some lists are published weekly and others monthly. The response includes when each list was first published and last published.</p>
+                        <p>
+                            The lists/names service returns a list of all the New York Time Best Sellers Lists. Some lists are published weekly and others monthly.
+                            The response includes when each list was first published and last published. Rest Service:
+                            <a href="https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json" target="_blank" rel="noopener noreferrer">
+                                &nbsp;https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div className="row">
-                    { this.renderProduct() }
+                    {
+                        this.props.books.map(data => (
+                            <div className="col-12 col-md-3"> { Book(data) }</div>
+                        ))
+                    }
                 </div>
             </section>
         )
