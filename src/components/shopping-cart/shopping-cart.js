@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// Actions
+import {
+    tokenService
+} from '../../actions';
+
 // Stateless
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
 
@@ -19,8 +24,6 @@ class ShoppingCartSection extends Component {
     }
 
     componentDidMount() {
-        this.props.getBooks();
-
         this.tokenServiceSubscription = tokenService.hasToken.subscribe({
             next: (hasToken) => {
                 this.setState({ hasToken });
@@ -31,23 +34,23 @@ class ShoppingCartSection extends Component {
     }
 
     render() {
-        return (
+        return (this.state.hasToken) ? (
             <section className="shopping-cart">
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <h2>Shooping Cart</h2>
+                            <h2 className="shopping-cart__title">Shooping Cart</h2>
                         </div>
                         <div className="col-12">
-                            <p>Here you an add or remove the products you picked</p>
+                            <p className="shopping-cart__descent">Here you an add or remove the products you picked</p>
                         </div>
                     </div>
                     <div className="row">
-                        {ShoppingCartProduct({ hasToken: this.state.hasToken }) }
+                        {ShoppingCartProduct({ hasToken: this.state.hasToken })}
                     </div>
                 </div>
             </section>
-        )
+        ) : '';
     }
 }
 
@@ -57,4 +60,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getBooks })(ShoppingCartSection);
+export default connect(mapStateToProps, {  })(ShoppingCartSection);

@@ -16,6 +16,9 @@ import { ReactComponent as LogoutIcon } from '../../assets/images/icon-logout.sv
 // Stateless
 import { Loading } from '../stateless/loading/loading';
 
+// Components
+import ShoppingCartSection from '../shopping-cart/shopping-cart';
+
 class HeaderSection extends Component {
 
     constructor() {
@@ -23,7 +26,8 @@ class HeaderSection extends Component {
 
         this.state = {
             hasToken: false,
-            isAccesing: false
+            isAccesing: false,
+            openShooping: false,
         }
     }
 
@@ -54,7 +58,9 @@ class HeaderSection extends Component {
     }
 
     showShoppingCart = () => {
-        console.log('Shopping Access')
+        this.setState({
+            openShooping: (this.state.openShooping) ? false : true
+        })
     }
 
     logout = () => {
@@ -82,6 +88,7 @@ class HeaderSection extends Component {
                     isLoading: this.state.isAccesing,
                     message: 'Accesing'
                 })}
+                { (this.state.openShooping) ? <ShoppingCartSection /> : '' }
             </header>
         )
     }

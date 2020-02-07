@@ -1,3 +1,24 @@
 @import '../../styles/abstract/variables';
 
-.shopping-cart{}
+.shopping-cart{
+    background-color: $color-white;
+    border: 2px solid $color-charleston-green;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-right: none;
+    box-shadow: -5px 5px 4px rgba($color-charleston-green, 0.5);
+    max-width: 430px;
+    padding-bottom: 36px;
+    padding-top: 36px;
+    position: fixed;
+    right: 0;
+
+    &__title,
+    &__descent{
+        text-align: center;
+    }
+
+    &__title{
+        color: $color-charleston-green;
+    }
+}
