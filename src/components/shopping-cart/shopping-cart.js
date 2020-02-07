@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import * as loginService from '../../actions/user/login';
+import { getShoppingCartProducts } from '../../actions/products/products';
 
 // Stateless
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
@@ -16,7 +17,6 @@ class ShoppingCartSection extends Component {
         super();
 
         this.state = {
-            products: [],
             hasToken: false,
         }
     }
@@ -29,6 +29,12 @@ class ShoppingCartSection extends Component {
             error: err => console.error(err),
             complete: () => console.log('completed')
         });
+
+        this.props.getShoppingCartProducts();
+    }
+
+    componentWillUnmount() {
+        this.tokenServiceSubscription.unsubscribe();
     }
 
     render() {
@@ -40,11 +46,15 @@ class ShoppingCartSection extends Component {
                             <h2 className="shopping-cart__title">Shooping Cart</h2>
                         </div>
                         <div className="col-12">
-                            <p className="shopping-cart__descent">Here you an add or remove the products you picked</p>
+                            <p className="shopping-cart__descent">Here you can add or remove the products you picked</p>
                         </div>
                     </div>
                     <div className="row">
-                        {ShoppingCartProduct({ hasToken: this.state.hasToken })}
+                        {
+                            this.props.products.map(data => {
+                                return ShoppingCartProduct({ hasToken: this.state.hasToken, ...data });
+                            })
+                        }
                     </div>
                 </div>
             </section>
@@ -54,8 +64,8 @@ class ShoppingCartSection extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books.list
+        products: state.products.inShoopingCart
     }
 }
 
-export default connect(mapStateToProps, {  })(ShoppingCartSection);
+export default connect(mapStateToProps, { getShoppingCartProducts })(ShoppingCartSection);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import { getBooks } from '../../actions/products/books';
+import * as products from '../../actions/products/products';
 import * as loginService from '../../actions/user/login';
 
 // Stateless
@@ -17,13 +17,13 @@ class ProductListSection extends Component {
         super();
 
         this.state = {
-            books: [],
+            products: [],
             hasToken: false,
         }
     }
 
     componentDidMount() {
-        this.props.getBooks();
+        this.props.getProducts();
 
         this.tokenServiceSubscription = loginService.hasToken.subscribe({
             next: (hasToken) => {
@@ -53,8 +53,9 @@ class ProductListSection extends Component {
                 </div>
                 <div className="row">
                     {
-                        this.props.books.map(data => {
+                        this.props.products.map(data => {
                             data.hasToken = this.state.hasToken;
+                            data.addProductToShoppingCart = this.props.addProductToShoppingCart;
                             return  <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
                         })
                     }
@@ -66,8 +67,8 @@ class ProductListSection extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books.list
+        products: state.products.list
     }
 }
 
-export default connect(mapStateToProps, { getBooks })(ProductListSection);
+export default connect(mapStateToProps, products)(ProductListSection);

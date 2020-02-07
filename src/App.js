@@ -13,9 +13,10 @@ import FooterSection from './components/footer/footer';
 import ProductListSection from './components/product-list/product-list';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 const App = () => (
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <main>
       <HeaderSection />
       <ProductListSection />

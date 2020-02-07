@@ -8,6 +8,8 @@ import { ReactComponent as ShoppingCartAddingIcon } from '../../../assets/images
 
 export const Book = (data) => {
 
+    const addProductToShoppingCart = () => data.addProductToShoppingCart(data);
+
     return (
         <article className="product">
             <figure>
@@ -16,7 +18,7 @@ export const Book = (data) => {
             </figure>
             <h4>{data.title}</h4>
             <p>{data.author}</p>
-            { (data.hasToken) ? <ShoppingCartAddingIcon /> : '' }
+            {(data.hasToken) ? <ShoppingCartAddingIcon onClick={addProductToShoppingCart} /> : '' }
         </article>
     )
 }
