@@ -7,12 +7,20 @@ header{
     top: 0;
     width: 100%;
 
+    @media screen and (max-width: $viewport-medium){
+        padding: 10px 0px;
+    }
+
     h2{
         color: $color-isabelline;
+
+        @media screen and (max-width: $viewport-medium - 1){
+            text-align: center;
+        }
     }
 
     .icons-controls{
-        float: right;
+        text-align: center;
 
         svg{
             cursor: pointer;

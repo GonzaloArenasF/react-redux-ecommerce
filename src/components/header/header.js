@@ -72,10 +72,10 @@ class HeaderSection extends Component {
             <header>
                 <div className="container">
                     <div className="row">
-                        <div className="col-9">
+                        <div className="col-12 col-md-9">
                             <h2>Ecommerce</h2>
                         </div>
-                        <div className="col-3">
+                        <div className="col-12 col-md-3">
                             <div className="icons-controls">
                                 {(!this.state.hasToken) ? (<UserIcon onClick={this.login} />) : ('')}
                                 {(this.state.hasToken) ? (<ShoppingCartIcon onClick={this.showShoppingCart} />) : ('')}
