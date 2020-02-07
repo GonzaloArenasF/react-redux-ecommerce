@@ -48,7 +48,7 @@ class ProductListSection extends Component {
                             The lists/names service returns a list of all the New York Time Best Sellers Lists. Some lists are published weekly and others monthly.
                             The response includes when each list was first published and last published. Rest Service:
                             <a href="https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json" target="_blank" rel="noopener noreferrer">
-                                &nbsp;https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json
+                                &nbsp;NYT Api
                             </a>
                         </p>
                     </div>
