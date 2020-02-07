@@ -2,8 +2,10 @@
 
 .loading {
     background-color: $color-xanadu-70;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
     height: max-content;
-    padding: 10px 50px;
+    padding: 20px 100px;
     position: fixed;
     right: 0;
     text-align: center;

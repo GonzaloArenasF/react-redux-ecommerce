@@ -79,7 +79,7 @@ class HeaderSection extends Component {
                     </div>
                 </div>
                 {Loading({
-                    hasToken: this.state.isAccesing,
+                    isLoading: this.state.isAccesing,
                     message: 'Accesing'
                 })}
             </header>

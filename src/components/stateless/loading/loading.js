@@ -5,7 +5,7 @@ import './loading.scss';
 
 export const Loading = (data) => {
 
-    return (data.hasToken) ? (
+    return (data.isLoading) ? (
         <div className="loading">
             <h3>{ data.message }</h3>
             <div></div>
