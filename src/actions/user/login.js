@@ -1,17 +1,14 @@
 import { Observable } from 'rxjs';
 import axios from 'axios';
 
-const tokenStoragedName = 'ecommerce-token';
+export const tokenStoragedName = 'ecommerce-token';
 
-const setToken = (token) => (
-    localStorage.setItem(tokenStoragedName, token)
-);
+export const types = {
+    LOGIN: 'LOGIN',
+    CLEAR_TOKEN: 'CLEAR_TOKEN',
+};
 
-const removeToken = () => {
-    localStorage.removeItem(tokenStoragedName);
-}
-
-const hasToken = new Observable((subscriber) => {
+export const hasToken = new Observable((subscriber) => {
     const intervalId = setInterval(() => {
         subscriber.next((localStorage.getItem(tokenStoragedName)) ? true : false);
     }, 1000);
@@ -21,13 +18,26 @@ const hasToken = new Observable((subscriber) => {
     };
 });
 
-export const tokenService = {
-    hasToken,
-    removeToken,
-    setToken
-};
-
-export function login(email, password) {
+/*
+    Actions
+*/
+export function login() {
+    const email = 'eve.holt@reqres.in';
+    const password = 'cityslicka';
     const urlService = 'https://reqres.in/api/login';
-    return axios.post(urlService, { email, password });
+
+    return (dispatch, getState) => {
+        axios.post(urlService, { email, password })
+            .then((response) => {
+                const token = response.data.token;
+                localStorage.setItem(tokenStoragedName, token);
+                dispatch({ type: types.LOGIN, payload: token });
+            });
+    }
+}
+
+export function clearToken() {
+    return (dispatch, getState) => {
+        dispatch({ type: types.CLEAR_TOKEN })
+    }
 }

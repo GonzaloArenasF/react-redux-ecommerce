@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import './header.scss';
+import { connect } from 'react-redux';
 
 // Actions
-import {
-    login,
-    tokenService
-} from '../../actions';
-
+import * as loginService from '../../actions/user/login';
 
 // Icons
 import { ReactComponent as UserIcon } from '../../assets/images/icon-user.svg';
@@ -19,22 +15,25 @@ import { Loading } from '../stateless/loading/loading';
 // Components
 import ShoppingCartSection from '../shopping-cart/shopping-cart';
 
+// Style
+import './header.scss';
+
 class HeaderSection extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            hasToken: false,
             isAccesing: false,
             openShooping: false,
         }
     }
 
     componentDidMount() {
-        this.tokenServiceSubscription = tokenService.hasToken.subscribe({
+        this.tokenServiceSubscription = loginService.hasToken.subscribe({
             next: (hasToken) => {
                 this.setState({ hasToken });
+                if (this.state.hasToken) this.setState({ isAccesing: false });
             },
             error: err => console.error(err),
             complete: () => console.log('completed')
@@ -46,15 +45,8 @@ class HeaderSection extends Component {
     }
 
     login = () => {
-        const email = 'eve.holt@reqres.in';
-        const password = 'cityslicka';
-
         this.setState({ isAccesing: true });
-        login(email, password)
-            .then((response) => {
-                tokenService.setToken(response.data.token)
-                this.setState({ isAccesing: false });
-            });
+        this.props.login();
     }
 
     showShoppingCart = () => {
@@ -64,7 +56,7 @@ class HeaderSection extends Component {
     }
 
     logout = () => {
-        tokenService.removeToken();
+        this.props.clearToken();
     }
 
     render() {
@@ -94,4 +86,10 @@ class HeaderSection extends Component {
     }
 }
 
-export default HeaderSection;
+const mapStateToProps = (state) => {
+    return {
+        hasToken: state.login.hasToken
+    }
+}
+
+export default connect(mapStateToProps, loginService)(HeaderSection);

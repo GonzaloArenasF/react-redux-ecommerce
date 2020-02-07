@@ -18,9 +18,9 @@ export const ShoppingCartProduct = (data) => {
                     </figure>
                 </div>
                 <div className="col-5">
-                    <h4></h4>
+                    <h4>test</h4>
                     <p></p>
-                    <h4></h4>
+                    <h4>test2</h4>
                 </div>
                 <div className="col-2">
                     <h2>+</h2>

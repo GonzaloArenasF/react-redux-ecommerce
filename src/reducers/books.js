@@ -1,4 +1,6 @@
-import { SHOW_BOOKS } from "../actions";
+import {
+    SHOW_BOOKS
+} from "../actions/products/books";
 
 const initialState = {
     list: []
@@ -15,7 +17,7 @@ const setBookData = (payload) => {
     })
 }
 
-export function getBooks(state = initialState, action) {
+export function bookReducer(state = initialState, action) {
     switch (action.type) {
         case SHOW_BOOKS:
             return Object.assign({}, state, { list: setBookData(action.payload) });

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // actions
-import {
-    getBooks,
-    tokenService
-} from '../../actions';
+import { getBooks } from '../../actions/products/books';
+import * as loginService from '../../actions/user/login';
 
 // Stateless
 import { Book } from '../stateless/product/product';
@@ -27,7 +25,7 @@ class ProductListSection extends Component {
     componentDidMount() {
         this.props.getBooks();
 
-        this.tokenServiceSubscription = tokenService.hasToken.subscribe({
+        this.tokenServiceSubscription = loginService.hasToken.subscribe({
             next: (hasToken) => {
                 this.setState({ hasToken });
             },

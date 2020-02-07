@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import {
-    tokenService
-} from '../../actions';
+import * as loginService from '../../actions/user/login';
 
 // Stateless
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
@@ -24,7 +22,7 @@ class ShoppingCartSection extends Component {
     }
 
     componentDidMount() {
-        this.tokenServiceSubscription = tokenService.hasToken.subscribe({
+        this.tokenServiceSubscription = loginService.hasToken.subscribe({
             next: (hasToken) => {
                 this.setState({ hasToken });
             },
