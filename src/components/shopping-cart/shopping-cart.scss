@@ -9,6 +9,17 @@
     width: 100vw;
     z-index: 3;
 
+    &__icon-close{
+        cursor: pointer;
+        float: right;
+        height: 30px;
+        width: 30px;
+
+        path{
+            fill: $color-deep-space-sparkle;
+        }
+    }
+
     &__products-box{
         background-color: $color-white;
         border-radius: 20px;
@@ -34,10 +45,10 @@
         &__list{
             overflow: hidden;
             overflow-y: auto;
-            height: 44vh;
+            height: 38vh;
 
             @media screen and (max-width: $viewport-medium){
-                height: 67vh;
+                height: 60vh;
             }
         }
     }

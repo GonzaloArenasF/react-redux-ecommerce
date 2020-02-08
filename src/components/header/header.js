@@ -49,7 +49,7 @@ class HeaderSection extends Component {
         this.props.login();
     }
 
-    showShoppingCart = () => {
+    toggleShoppingCart = (event) => {
         this.setState({
             openShooping: (this.state.openShooping) ? false : true
         })
@@ -70,7 +70,7 @@ class HeaderSection extends Component {
                         <div className="col-12 col-md-3">
                             <div className="icons-controls">
                                 {(!this.state.hasToken) ? (<UserIcon onClick={this.login} />) : ('')}
-                                {(this.state.hasToken) ? (<ShoppingCartIcon onClick={this.showShoppingCart} />) : ('')}
+                                {(this.state.hasToken) ? (<ShoppingCartIcon onClick={this.toggleShoppingCart} />) : ('')}
                                 {(this.state.hasToken) ? (<LogoutIcon onClick={this.logout} />) : ('')}
                             </div>
                         </div>
@@ -80,7 +80,7 @@ class HeaderSection extends Component {
                     isLoading: this.state.isAccesing,
                     message: 'Accesing'
                 })}
-                { (this.state.openShooping) ? <ShoppingCartSection /> : '' }
+                {(this.state.openShooping) ? <ShoppingCartSection closeShoppingCart={this.toggleShoppingCart}/> : '' }
             </header>
         )
     }
