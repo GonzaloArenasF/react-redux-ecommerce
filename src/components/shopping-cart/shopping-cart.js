@@ -7,6 +7,9 @@ import { getShoppingCartProducts } from '../../actions/products/products';
 // Stateless
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
 
+// Images
+import { ReactComponent as IconClose} from '../../assets/images/icon-close.svg';
+
 // styles
 import './shopping-cart.scss';
 

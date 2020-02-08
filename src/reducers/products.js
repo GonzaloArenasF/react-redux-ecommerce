@@ -28,14 +28,10 @@ const setShoppingCartProducts = (state, product) => {
     return inShoopingCart;
 }
 
-const getShoppingCartProducts = (state) => {
-    if (state.inShoopingCart.length === 0) {
-        const shoppingCartProductStorage = localStorage.getItem(shoppingCartProductStorageName);
-        state.inShoopingCart = JSON.parse(shoppingCartProductStorage);
-        return state
-    }
-
-    return state;
+const getShoppingCartProducts = (inShoopingCart) => {
+    return (inShoopingCart.length === 0)
+        ?   inShoopingCart = JSON.parse(localStorage.getItem(shoppingCartProductStorageName))
+        :   inShoopingCart;
 }
 
 export function productsReducer(state = initialState, action) {
@@ -48,7 +44,7 @@ export function productsReducer(state = initialState, action) {
         }
 
         case productsAction.types.GET_SHOPPING_CART_PRODUCTS:
-            return getShoppingCartProducts(state);
+            return Object.assign({}, state, { inShoopingCart: getShoppingCartProducts(state.inShoopingCart) });
 
         default:
             return state;
