@@ -30,5 +30,15 @@
             margin-bottom: 14px;
             text-align: center;
         }
+
+        &__list{
+            overflow: hidden;
+            overflow-y: auto;
+            height: 44vh;
+
+            @media screen and (max-width: $viewport-medium){
+                height: 67vh;
+            }
+        }
     }
 }

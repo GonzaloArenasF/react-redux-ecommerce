@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import * as loginService from '../../actions/user/login';
 import { getShoppingCartProducts } from '../../actions/products/products';
 
 // Stateless
@@ -13,32 +12,12 @@ import './shopping-cart.scss';
 
 class ShoppingCartSection extends Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            hasToken: false,
-        }
-    }
-
     componentDidMount() {
-        this.tokenServiceSubscription = loginService.hasToken.subscribe({
-            next: (hasToken) => {
-                this.setState({ hasToken });
-            },
-            error: err => console.error(err),
-            complete: () => console.log('completed')
-        });
-
         this.props.getShoppingCartProducts();
     }
 
-    componentWillUnmount() {
-        this.tokenServiceSubscription.unsubscribe();
-    }
-
     render() {
-        return (this.state.hasToken) ? (
+        return (
             <section className="shopping-cart">
                 <div className="container shopping-cart__products-box">
                     <div className="row">
@@ -48,11 +27,13 @@ class ShoppingCartSection extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        {ShoppingCartProduct({ hasToken: this.state.hasToken, products: this.props.products })}
+                        <div className="col-12 shopping-cart__products-box__list">
+                            {ShoppingCartProduct({ products: this.props.products })}
+                        </div>
                     </div>
                 </div>
             </section>
-        ) : '';
+        );
     }
 }
 
