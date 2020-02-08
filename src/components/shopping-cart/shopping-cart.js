@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Actions
-import { getShoppingCartProducts } from '../../actions/products/products';
+import {
+    getShoppingCartProducts,
+    addProductToShoppingCart,
+    subtractProductToShoppingCart
+} from '../../actions/products/products';
 
 // Stateless
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
@@ -36,7 +40,12 @@ class ShoppingCartSection extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12 shopping-cart__products-box__list">
-                            {ShoppingCartProduct(this.props.products)}
+                            {ShoppingCartProduct({
+                                list: this.props.products,
+                                increaseQuantity: this.props.addProductToShoppingCart,
+                                decreaseQuantity: this.props.subtractProductToShoppingCart,
+                                updateList: this.props.getShoppingCartProducts
+                            })}
                         </div>
                     </div>
                 </div>
@@ -51,4 +60,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getShoppingCartProducts })(ShoppingCartSection);
+export default connect(mapStateToProps, {
+    getShoppingCartProducts,
+    addProductToShoppingCart,
+    subtractProductToShoppingCart
+})(ShoppingCartSection);

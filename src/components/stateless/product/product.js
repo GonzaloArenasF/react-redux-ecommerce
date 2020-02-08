@@ -20,12 +20,12 @@ export const Book = (data) => {
     }
 
     return (
-        <article className="product">
+        <article className="product contsiner-fluid">
             <figure>
                 <img src={data.image} alt={data.title}></img>
                 <figcaption>{data.title} de {data.author}</figcaption>
             </figure>
-            <h4>{data.title} - {data.quantity}</h4>
+            <h4>{data.title}</h4>
             <p>{data.author}</p>
             {(data.hasToken) ? renderShoppingCartAddingIcon() : '' }
         </article>

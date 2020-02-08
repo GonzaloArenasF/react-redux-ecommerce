@@ -3,6 +3,7 @@ import axios from 'axios';
 export const types = {
     SHOW_PRODUCTS: 'SHOW_PRODUCTS',
     ADD_SHOPPING_CART: 'ADD_SHOPPING_CART',
+    SUBSTRACT_SHOPPING_CART_PRODUCTS: 'SUBSTRACT_SHOPPING_CART_PRODUCTS',
     GET_SHOPPING_CART_PRODUCTS: 'GET_SHOPPING_CART_PRODUCTS'
 }
 
@@ -22,6 +23,12 @@ export function getProducts() {
 export function addProductToShoppingCart(product) {
     return (dispatch, getState) => {
         dispatch({ type: types.ADD_SHOPPING_CART, payload: product })
+    }
+}
+
+export function subtractProductToShoppingCart(product) {
+    return (dispatch, getState) => {
+        dispatch({ type: types.SUBSTRACT_SHOPPING_CART_PRODUCTS, payload: product })
     }
 }
 

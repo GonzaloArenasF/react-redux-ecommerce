@@ -1,4 +1,5 @@
 @import '../../../styles/abstract/variables';
+@import '../../../styles/abstract/mixins';
 
 .shopping-cart-product{
     &__image{
@@ -34,12 +35,15 @@
         }
 
         &__buttons{
+            @include user-select;
+
             display: flex;
             margin-top: 16px;
 
             &__plus, &__minus{
                 background-color: $color-deep-space-sparkle;
                 border-radius: 100%;
+                cursor: pointer;
                 display: table-cell;
                 height: 36px;
                 text-align: center;

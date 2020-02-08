@@ -1,0 +1,6 @@
+@mixin user-select($state: none) {
+    -webkit-user-select: $state;  /* Chrome all / Safari all */
+    -moz-user-select: $state;     /* Firefox all */
+    -ms-user-select: $state;      /* IE 10+ */
+    user-select: $state;          /* Likely future */
+}

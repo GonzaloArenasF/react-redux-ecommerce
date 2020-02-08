@@ -3,11 +3,20 @@ import React from 'react';
 // Style
 import './shopping-cart-product.scss';
 
-const renderProduct = (product) => {
-    const randomID = parseInt(Math.random() * (1000000 - 1) + 1);
+const renderProduct = (product, operations) => {
+
+    const increaseProductQuantity = () => {
+        operations.increaseQuantity(product);
+        operations.updateProductsList();
+    }
+
+    const decreaseProductQuantity = () => {
+        operations.decreaseQuantity(product);
+        operations.updateProductsList();
+    }
 
     return (
-        <article className="shopping-cart-product container-fluid" key={'shopping-cart-book-' + product.id + '-' + randomID}>
+        <article className="shopping-cart-product container-fluid" key={'shopping-cart-book-' + product.id}>
             <div className="row">
                 <div className="col-4 col-md-3">
                     <figure className="shopping-cart-product__image">
@@ -22,8 +31,8 @@ const renderProduct = (product) => {
                 <div className="col-12 col-md-3 shopping-cart-product__controls">
                     <h3 className="shopping-cart-product__controls__quantity">{product.quantity}</h3>
                     <div className="shopping-cart-product__controls__buttons">
-                        <h2 className="shopping-cart-product__controls__buttons__minus">-</h2>
-                        <h2 className="shopping-cart-product__controls__buttons__plus">+</h2>
+                        <h2 className="shopping-cart-product__controls__buttons__minus" onClick={decreaseProductQuantity}>-</h2>
+                        <h2 className="shopping-cart-product__controls__buttons__plus" onClick={increaseProductQuantity}>+</h2>
                     </div>
                 </div>
             </div>
@@ -33,5 +42,11 @@ const renderProduct = (product) => {
 }
 
 export const ShoppingCartProduct = (products) => {
-    return (products && products.length > 0) ? products.map(product => renderProduct(product)) : <center>There are no products selected</center>;
+    return (products && products.list.length > 0)
+        ? products.list.map(product => renderProduct(product, {
+            increaseQuantity: products.increaseQuantity,
+            decreaseQuantity: products.decreaseQuantity,
+            updateProductsList: products.updateList
+        }))
+        : <center>There are no products selected</center>;
 }
