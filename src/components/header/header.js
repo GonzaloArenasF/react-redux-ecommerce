@@ -80,7 +80,7 @@ class HeaderSection extends Component {
                     isLoading: this.state.isAccesing,
                     message: 'Accesing'
                 })}
-                { (this.state.openShooping) ? <ShoppingCartSection /> : '' }
+                { (!this.state.openShooping) ? <ShoppingCartSection /> : '' }
             </header>
         )
     }

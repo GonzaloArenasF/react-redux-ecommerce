@@ -40,21 +40,15 @@ class ShoppingCartSection extends Component {
     render() {
         return (this.state.hasToken) ? (
             <section className="shopping-cart">
-                <div className="container">
+                <div className="container shopping-cart__products-box">
                     <div className="row">
                         <div className="col-12">
-                            <h2 className="shopping-cart__title">Shooping Cart</h2>
-                        </div>
-                        <div className="col-12">
-                            <p className="shopping-cart__descent">Here you can add or remove the products you picked</p>
+                            <h2 className="shopping-cart__products-box__title">Shooping Cart</h2>
+                            <p className="shopping-cart__products-box__descent">Here you can add or remove the products you picked</p>
                         </div>
                     </div>
                     <div className="row">
-                        {
-                            this.props.products.map(data => {
-                                return ShoppingCartProduct({ hasToken: this.state.hasToken, ...data });
-                            })
-                        }
+                        {ShoppingCartProduct({ hasToken: this.state.hasToken, products: this.props.products })}
                     </div>
                 </div>
             </section>

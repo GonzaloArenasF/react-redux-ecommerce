@@ -1,24 +1,34 @@
 @import '../../styles/abstract/variables';
 
 .shopping-cart{
-    background-color: $color-white;
-    border: 2px solid $color-charleston-green;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
-    border-right: none;
-    box-shadow: -5px 5px 4px rgba($color-charleston-green, 0.5);
-    max-width: 430px;
-    padding-bottom: 36px;
-    padding-top: 36px;
+    background-color: $color-deep-space-sparkle-50;
+    height: 100vh;
+    left: 0;
     position: fixed;
-    right: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 3;
 
-    &__title,
-    &__descent{
-        text-align: center;
-    }
+    &__products-box{
+        background-color: $color-white;
+        border-radius: 20px;
+        height: 60vh;
+        margin: 0 auto;
+        margin-top: 10vh;
+        max-width: 453px;
+        padding: 32px;
 
-    &__title{
-        color: $color-charleston-green;
+        @media screen and (max-width: $viewport-medium){
+            height: 94vh;
+            margin-top: 3vh;
+            padding: 24px;
+            width: 90%;
+        }
+
+        &__title, &__descent{
+            color: $color-charleston-green;
+            margin-bottom: 14px;
+            text-align: center;
+        }
     }
 }

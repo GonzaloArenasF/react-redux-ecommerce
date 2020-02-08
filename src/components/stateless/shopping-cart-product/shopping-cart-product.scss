@@ -1,1 +1,11 @@
 @import '../../../styles/abstract/variables';
+
+.shopping-cart-product{
+    &__title{
+        width: 80px;
+
+        img{
+            width: 100%;
+        }
+    }
+}

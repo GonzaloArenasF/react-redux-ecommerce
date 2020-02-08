@@ -18,7 +18,9 @@ $color-ash-grey: #BACDB0;
 $color-xanadu: #729B79;
 $color-xanadu-70: rgba($color-xanadu, .7);
 $color-deep-space-sparkle: #475B63;
+$color-deep-space-sparkle-50: rgba(#475B63, .5);
 $color-charleston-green: #2E2C2F;
+$color-charleston-green-20: rgba(#2E2C2F, .2);
 
 /*
     Brakpoints (Bootstrap reference)
@@ -46,7 +48,9 @@ $viewport-xlarge: 1200px;
     --color-xanadu: $color-xanadu;
     --color-xanadu-70: $color-xanadu-70;
     --color-deep-space-sparkle: $color-deep-space-sparkle;
+    --color-deep-space-sparkle-50: $color-deep-space-sparkle-50;
     --color-charleston-green: $color-charleston-green;
+    --color-charleston-green-20: $color-charleston-green-20;
 
     --viewport-small: $viewport-small;
     --viewport-medium: $viewport-medium;
