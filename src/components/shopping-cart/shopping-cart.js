@@ -8,7 +8,7 @@ import { getShoppingCartProducts } from '../../actions/products/products';
 import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
 
 // Images
-import { ReactComponent as IconClose} from '../../assets/images/icon-close.svg';
+import { ReactComponent as IconClose } from '../../assets/images/icon-close.svg';
 
 // styles
 import './shopping-cart.scss';
@@ -36,7 +36,7 @@ class ShoppingCartSection extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12 shopping-cart__products-box__list">
-                            {ShoppingCartProduct({ products: this.props.products })}
+                            {ShoppingCartProduct(this.props.products)}
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ class ShoppingCartSection extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.products.inShoopingCart
+        products: state.products.inShoppingCart
     }
 }
 

@@ -2,36 +2,31 @@ import * as productsAction from "../actions/products/products";
 
 const initialState = {
     list: [],
-    inShoopingCart: []
+    inShoppingCart: []
 }
 
-const shoppingCartProductStorageName = 'shopping-cart-product'
-
-const setProductData = (payload) => {
-    return payload.map(product => {
+const setProductData = (products) => {
+    return products.map(product => {
         return {
             id: product.rank,
             title: product.title.toLowerCase(),
             author: product.author,
             image: product.book_image,
-            price: 10000,
-            quantity: 0
+            price: parseInt(Math.random() * (100000 - 1) + 1),
+            quantity: 0,
+            inShoppingCart: false
         }
     })
 }
 
-const setShoppingCartProducts = (state, product) => {
-    const inShoopingCart = state.inShoopingCart;
-    inShoopingCart.push(product);
-    localStorage.setItem(shoppingCartProductStorageName, JSON.stringify(inShoopingCart));
-
-    return inShoopingCart;
+const setShoppingCartProducts = (state, productAdded) => {
+    const productFromList = state.list.find(product => product.id === productAdded.id);
+    productFromList.quantity++;
+    productFromList.inShoppingCart = true;
 }
 
-const getShoppingCartProducts = (inShoopingCart) => {
-    return (inShoopingCart.length === 0)
-        ?   inShoopingCart = JSON.parse(localStorage.getItem(shoppingCartProductStorageName))
-        :   inShoopingCart;
+const getShoppingCartProducts = (state) => {
+    return state.list.filter(product => (product.inShoppingCart === true));
 }
 
 export function productsReducer(state = initialState, action) {
@@ -40,11 +35,14 @@ export function productsReducer(state = initialState, action) {
             return Object.assign({}, state, { list: setProductData(action.payload) });
 
         case productsAction.types.ADD_SHOPPING_CART: {
-            return Object.assign({}, state, { inShoopingCart: setShoppingCartProducts(state, action.payload) });
+            console.log('ADD_SHOPPING_CART');
+            setShoppingCartProducts(state, action.payload);
+            return state;
         }
 
         case productsAction.types.GET_SHOPPING_CART_PRODUCTS:
-            return Object.assign({}, state, { inShoopingCart: getShoppingCartProducts(state.inShoopingCart) });
+            console.log('GET_SHOPPING_CART_PRODUCTS');
+            return Object.assign({}, state, { inShoppingCart: getShoppingCartProducts(state) });
 
         default:
             return state;

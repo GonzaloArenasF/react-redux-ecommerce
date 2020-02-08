@@ -36,4 +36,14 @@
             fill: $color-deep-space-sparkle;
         }
     }
+
+    .icon-check{
+        cursor: initial;
+        height: 36px;
+        width: 36px;
+
+        path:nth-child(2){
+            fill: $color-white;
+        }
+    }
 }

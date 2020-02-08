@@ -32,6 +32,6 @@ const renderProduct = (product) => {
     )
 }
 
-export const ShoppingCartProduct = (data) => {
-    return data.products.map(product => renderProduct(product));
+export const ShoppingCartProduct = (products) => {
+    return (products && products.length > 0) ? products.map(product => renderProduct(product)) : <center>There are no products selected</center>;
 }
