@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // actions
 import * as products from '../../actions/products/products';
@@ -70,6 +71,12 @@ class ProductListSection extends Component {
             </section>
         )
     }
+}
+
+ProductListSection.propTypes = {
+    products: PropTypes.array,
+    addProductToShoppingCart: PropTypes.func,
+    getProducts: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

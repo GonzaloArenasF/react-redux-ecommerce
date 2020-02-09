@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // Actions
 import * as loginService from '../../actions/user/login';
@@ -83,6 +84,13 @@ class HeaderSection extends Component {
             </header>
         )
     }
+}
+
+HeaderSection.propTypes = {
+    isAccesing: PropTypes.bool,
+    openShooping: PropTypes.bool,
+    login: PropTypes.func,
+    clearToken: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

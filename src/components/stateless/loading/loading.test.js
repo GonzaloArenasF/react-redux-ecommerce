@@ -7,7 +7,7 @@ import Loading from './loading';
 
 const componentSetUp = (props = {}) => shallow(Loading({...props}));
 
-describe('Lowding Component', () => {
+describe('Loading Component', () => {
     let component;
 
     const props = {
