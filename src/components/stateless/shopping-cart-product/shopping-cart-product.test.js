@@ -30,6 +30,12 @@ describe('Shopping Cart Product Component', () => {
         expect(wrapper.length).toBe(1);
     });
 
+    // test('Should prop types be correct', () => {
+    //     const component = componentSetUp(props);
+    //     const propsErr = checkPropTypes(Book.propTypes, props, 'props', Book.name);
+    //     expect(propsErr).toBeUndefined();
+    // });
+
     test('Should render all items', () => {
         props.list = productsList;
         const component = componentSetUp(props);
@@ -89,4 +95,14 @@ describe('Shopping Cart Product Component', () => {
         wrapper = component.contains(product.quantity);
         expect(wrapper).toBeTruthy();
     });
+
+    test('Should appear message no products', () => {
+        props.list = [];
+
+        const component = componentSetUp(props);
+
+        let wrapper = component.contains('There are no products selected');
+        expect(wrapper).toBeTruthy();
+    });
+
 });
