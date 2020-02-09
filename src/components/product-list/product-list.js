@@ -58,9 +58,12 @@ class ProductListSection extends Component {
                 <div className="row">
                     {
                         this.props.products.map(data => {
-                            data.hasToken = this.state.hasToken;
-                            data.addProductToShoppingCart = this.props.addProductToShoppingCart;
-                            return  <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
+                            const bookOperations = {
+                                addProductToShoppingCart: this.props.addProductToShoppingCart
+                            }
+                            return <div className="col-12 col-md-3" key={"book-" + data.id}>
+                                <Book data={data} hasToken={this.state.hasToken} operations={bookOperations} />
+                            </div>
                         })
                     }
                 </div>

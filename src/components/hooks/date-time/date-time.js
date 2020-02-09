@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import './date-time.scss';
 
 export function CurrentDateTime() {
-    const momentFormat = 'dddd D MMMM YYYY - hh:mm:ss A';
+    const momentFormat = 'dddd D MMMM YYYY - h:mm:ss A';
 
     const [dateTime, setDateTime] = useState(moment().format(momentFormat));
 
