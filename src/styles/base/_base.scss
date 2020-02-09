@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: $roboto;
+}
+
+body{
+    color: $color-charleston-green;
+    font-size: 14px;
+    font-weight: $roboto-regular;
+}
+
+h1, h2, h3, h4{
+    color: $color-charleston-green;
+    font-weight: $roboto-black;
+}
+
+h1{ font-size: 48px; }
+h2{ font-size: 36px; }
+h3{ font-size: 24px; }
+h4{ font-size: 18px; }
+
+strong, b{
+    font-weight: $roboto-bold;
+}
+
+p{
+    line-height: 20px;
+}

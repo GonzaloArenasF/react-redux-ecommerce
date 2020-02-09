@@ -1,0 +1,10 @@
+@import '../../../styles/abstract/variables';
+
+.date-time{
+    float: right;
+    margin-top: -26px;
+
+    @media screen and (max-width: $viewport-medium){
+        display: none;
+    }
+}

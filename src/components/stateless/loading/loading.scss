@@ -1,0 +1,23 @@
+@import '../../../styles/abstract/variables';
+
+.loading {
+    background-color: $color-ash-grey;
+    height: max-content;
+    padding: 20px 100px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    h3{
+        color: $color-xanadu;
+    }
+
+    div{
+        background-color: $color-deep-space-sparkle;
+        border-radius: 100%;
+        display: inline-table;
+        margin-left: 5px;
+        height: 8px;
+        width: 8px;
+    }
+}

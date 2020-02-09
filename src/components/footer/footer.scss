@@ -1,0 +1,12 @@
+@import '../../styles/abstract/variables';
+
+footer{
+    background-color: $color-charleston-green;
+    bottom: 0;
+    color: $color-isabelline;
+    padding: 42px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
