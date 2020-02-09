@@ -10,7 +10,7 @@ import { ReactComponent as ShoppingCartIcon } from '../../assets/images/shopping
 import { ReactComponent as LogoutIcon } from '../../assets/images/icon-logout.svg';
 
 // Stateless
-import { Loading } from '../stateless/loading/loading';
+import Loading from '../stateless/loading/loading';
 
 // Components
 import ShoppingCartSection from '../shopping-cart/shopping-cart';
@@ -76,10 +76,7 @@ class HeaderSection extends Component {
                         </div>
                     </div>
                 </div>
-                {Loading({
-                    isLoading: this.state.isAccesing,
-                    message: 'Accesing'
-                })}
+                {<Loading isLoading={this.state.isAccesing} message="Accesing" />}
                 {(this.state.openShooping) ? <ShoppingCartSection closeShoppingCart={this.toggleShoppingCart}/> : '' }
             </header>
         )
