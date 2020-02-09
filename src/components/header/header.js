@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // Actions
 import * as loginService from '../../actions/user/login';
 
 // Icons
-import { ReactComponent as UserIcon } from '../../assets/images/icon-user.svg';
-import { ReactComponent as ShoppingCartIcon } from '../../assets/images/shopping-cart.svg';
-import { ReactComponent as LogoutIcon } from '../../assets/images/icon-logout.svg';
+import {
+    IconUser,
+    IconShoopingCart,
+    IconLogout
+} from '../stateless/icons';
 
 // Stateless
-import { Loading } from '../stateless/loading/loading';
+import Loading from '../stateless/loading/loading';
 
 // Components
 import ShoppingCartSection from '../shopping-cart/shopping-cart';
@@ -69,21 +72,25 @@ class HeaderSection extends Component {
                         </div>
                         <div className="col-12 col-md-3">
                             <div className="icons-controls">
-                                {(!this.state.hasToken) ? (<UserIcon onClick={this.login} />) : ('')}
-                                {(this.state.hasToken) ? (<ShoppingCartIcon onClick={this.toggleShoppingCart} />) : ('')}
-                                {(this.state.hasToken) ? (<LogoutIcon onClick={this.logout} />) : ('')}
+                                {(!this.state.hasToken) ? (<div className="icon-btn" onClick={this.login}><IconUser /></div>) : ('')}
+                                {(this.state.hasToken) ? (<div className="icon-btn" onClick={this.toggleShoppingCart}><IconShoopingCart /></div>) : ('')}
+                                {(this.state.hasToken) ? (<div className="icon-btn" onClick={this.logout}><IconLogout  /></div>) : ('')}
                             </div>
                         </div>
                     </div>
                 </div>
-                {Loading({
-                    isLoading: this.state.isAccesing,
-                    message: 'Accesing'
-                })}
+                <Loading isLoading={this.state.isAccesing} message="Accesing" />
                 {(this.state.openShooping) ? <ShoppingCartSection closeShoppingCart={this.toggleShoppingCart}/> : '' }
             </header>
         )
     }
+}
+
+HeaderSection.propTypes = {
+    isAccesing: PropTypes.bool,
+    openShooping: PropTypes.bool,
+    login: PropTypes.func,
+    clearToken: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

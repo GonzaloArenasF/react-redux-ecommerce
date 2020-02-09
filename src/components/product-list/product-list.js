@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // actions
 import * as products from '../../actions/products/products';
@@ -58,15 +59,24 @@ class ProductListSection extends Component {
                 <div className="row">
                     {
                         this.props.products.map(data => {
-                            data.hasToken = this.state.hasToken;
-                            data.addProductToShoppingCart = this.props.addProductToShoppingCart;
-                            return  <div className="col-12 col-md-3" key={"book-" + data.id}> {Book(data)}</div>
+                            const bookOperations = {
+                                addProductToShoppingCart: this.props.addProductToShoppingCart
+                            }
+                            return <div className="col-12 col-md-3" key={"book-" + data.id}>
+                                <Book data={data} hasToken={this.state.hasToken} operations={bookOperations} />
+                            </div>
                         })
                     }
                 </div>
             </section>
         )
     }
+}
+
+ProductListSection.propTypes = {
+    products: PropTypes.array,
+    addProductToShoppingCart: PropTypes.func,
+    getProducts: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

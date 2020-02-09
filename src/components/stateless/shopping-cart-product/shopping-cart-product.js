@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Style
 import './shopping-cart-product.scss';
@@ -41,12 +42,23 @@ const renderProduct = (product, operations) => {
     )
 }
 
-export const ShoppingCartProduct = (products) => {
-    return (products && products.list.length > 0)
-        ? products.list.map(product => renderProduct(product, {
-            increaseQuantity: products.increaseQuantity,
-            decreaseQuantity: products.decreaseQuantity,
-            updateProductsList: products.updateList
+const ShoppingCartProduct = (props) => {
+    return (props && props.list.length > 0)
+        ? props.list.map(product => renderProduct(product, {
+            increaseQuantity: props.operations.increaseQuantity,
+            decreaseQuantity: props.operations.decreaseQuantity,
+            updateProductsList: props.operations.updateList
         }))
         : <center>There are no products selected</center>;
 }
+
+ShoppingCartProduct.propTypes = {
+    list: PropTypes.array.isRequired,
+    operations: PropTypes.shape({
+        increaseQuantity: PropTypes.func.isRequired,
+        decreaseQuantity: PropTypes.func.isRequired,
+        updateList: PropTypes.func.isRequired
+    })
+};
+
+export default ShoppingCartProduct;

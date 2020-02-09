@@ -27,23 +27,13 @@
         text-transform: capitalize;
     }
 
-    svg{
+    .icon-btn{
         cursor: pointer;
         margin-top: 10px;
-        width: 36px;
 
-        path{
-            fill: $color-deep-space-sparkle;
-        }
-    }
-
-    .icon-check{
-        cursor: initial;
-        height: 36px;
-        width: 36px;
-
-        path:nth-child(2){
-            fill: $color-white;
+        &.icon-check{
+            cursor: initial;
+            margin: 10px auto 0 auto;
         }
     }
 }

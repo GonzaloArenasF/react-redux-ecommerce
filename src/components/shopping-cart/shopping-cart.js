@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // Actions
 import {
@@ -9,15 +10,21 @@ import {
 } from '../../actions/products/products';
 
 // Stateless
-import { ShoppingCartProduct } from '../stateless/shopping-cart-product/shopping-cart-product';
+import ShoppingCartProduct from '../stateless/shopping-cart-product/shopping-cart-product';
 
 // Images
-import { ReactComponent as IconClose } from '../../assets/images/icon-close.svg';
+import { IconClose } from '../stateless/icons';
 
 // styles
 import './shopping-cart.scss';
 
 class ShoppingCartSection extends Component {
+
+    shoppingCartProductOperations = {
+        increaseQuantity: this.props.addProductToShoppingCart,
+        decreaseQuantity: this.props.subtractProductToShoppingCart,
+        updateList: this.props.getShoppingCartProducts
+    }
 
     componentDidMount() {
         this.props.getShoppingCartProducts();
@@ -29,7 +36,9 @@ class ShoppingCartSection extends Component {
                 <div className="container shopping-cart__products-box">
                     <div className="row">
                         <div className="col-12">
-                            <IconClose className="shopping-cart__icon-close" onClick={this.props.closeShoppingCart} />
+                            <div className="btn-close" onClick={this.props.closeShoppingCart}>
+                                <IconClose />
+                            </div>
                         </div>
                     </div>
                     <div className="row">
@@ -40,18 +49,21 @@ class ShoppingCartSection extends Component {
                     </div>
                     <div className="row">
                         <div className="col-12 shopping-cart__products-box__list">
-                            {ShoppingCartProduct({
-                                list: this.props.products,
-                                increaseQuantity: this.props.addProductToShoppingCart,
-                                decreaseQuantity: this.props.subtractProductToShoppingCart,
-                                updateList: this.props.getShoppingCartProducts
-                            })}
+                            {< ShoppingCartProduct list={this.props.products} operations={this.shoppingCartProductOperations} />}
                         </div>
                     </div>
                 </div>
             </section>
         );
     }
+}
+
+ShoppingCartSection.propTypes = {
+    products: PropTypes.array,
+    closeShoppingCart: PropTypes.func,
+    addProductToShoppingCart: PropTypes.func,
+    subtractProductToShoppingCart: PropTypes.func,
+    getShoppingCartProducts: PropTypes.func,
 }
 
 const mapStateToProps = (state) => {

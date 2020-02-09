@@ -1,16 +1,34 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Loading } from './loading';
+import { shallow } from 'enzyme';
+import checkPropTypes from 'check-prop-types';
 
-describe('Loading', () => {
-    test('Render Custom Text', () => {
-        const data = {
-            isLoading: true,
-            message: 'Custom Text Loading'
-        };
-        const { getByText } = render(Loading(data));
+// Component
+import Loading from './loading';
 
-        const loadingTextRendered = getByText(data.message);
-        expect(loadingTextRendered).toBeInTheDocument();
+const componentSetUp = (props = {}) => shallow(Loading({ ...props }));
+
+const props = {
+    isLoading: true,
+    message: 'testing'
+};
+
+describe('Loading Component', () => {
+    let component;
+
+    beforeEach(() => {
+        component = componentSetUp(props);
+
+        const propsErr = checkPropTypes(Loading.propTypes, props, 'props', Loading.name);
+        expect(propsErr).toBeUndefined();
+    });
+
+    test('Should render without errors', () => {
+        const wrapperFooter = component.find(`[data-test='loading']`)
+        expect(wrapperFooter.length).toBe(1);
+    });
+
+    test('Should render right message', () => {
+        const wrapperMessage = component.contains(props.message);
+        expect(wrapperMessage).toBeTruthy();
     });
 });

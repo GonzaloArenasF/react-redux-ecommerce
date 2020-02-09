@@ -1,21 +1,24 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { ShoppingCartProduct } from './shopping-cart-product';
+import { shallow } from 'enzyme';
+import checkPropTypes from 'prop-types';
 
-describe('Testing Shopping Cart Product', () => {
+import ShoppingCartProduct from './shopping-cart-product';
 
-    const noProducts = {
-        list: [],
+const componentSetUp = (props = {}) => shallow(<ShoppingCartProduct { ...props } />);
+const props = {
+    list: [{}],
+    operations: {
         increaseQuantity: () => {},
         decreaseQuantity: () => {},
-        updateList: () => {},
-    };
+        updateList: () => {}
+    }
+};
 
-    test('No products', () => {
-        const { getByText } = render(ShoppingCartProduct(noProducts));
+describe('Shopping Cart Product Component', () => {
 
-        expect(
-            getByText('There are no products selected')
-        ).toBeInTheDocument();
+    test('Should render without errors', () => {
+        const component = componentSetUp(props);
+        const wrapper = component.find('.shopping-cart-product');
+        expect(wrapper.length).toBe(1);
     });
 });
