@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as moment from 'moment';
 
 // Style
@@ -9,9 +9,10 @@ export function CurrentDateTime() {
 
     const [dateTime, setDateTime] = useState(moment().format(momentFormat));
 
-    setInterval(() => {
+    // eslint-disable-next-line
+    useEffect(() => {
         setDateTime(moment().format(momentFormat))
-    }, 1000);
+    });
 
     return (
         <h4 className="date-time">{dateTime}</h4>
