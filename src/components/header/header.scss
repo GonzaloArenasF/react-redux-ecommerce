@@ -23,15 +23,9 @@ header{
     .icons-controls{
         text-align: center;
 
-        svg{
+        div.icon-btn{
             cursor: pointer;
-            height: 36px;
-            margin-left: 10px;
-            width: 36px;
-
-            path{
-                fill: $color-ash-grey;
-            }
+            display: inline-table;
         }
     }
 }

@@ -1,0 +1,50 @@
+@import "../../../styles/abstract/variables";
+@import "../../../styles/abstract/mixins";
+
+.icon{
+    &-close {
+        @include user-select;
+
+        height: 30px;
+        width: 30px;
+
+        path {
+            fill: $color-deep-space-sparkle;
+        }
+    }
+
+    &-user,
+    &-shopping-cart,
+    &-logout{
+        height: 36px;
+        margin-left: 10px;
+        width: 36px;
+
+        path{
+            fill: $color-ash-grey;
+        }
+    }
+
+    &-shopping-cart-adding{
+        width: 36px;
+
+        path{
+            fill: $color-deep-space-sparkle;
+        }
+    }
+
+    &-check{
+        height: 36px;
+        width: 36px;
+
+        path{
+            &:nth-child(1){
+                fill: $color-deep-space-sparkle;
+            }
+
+            &:nth-child(2){
+                fill: $color-white;
+            }
+        }
+    }
+}

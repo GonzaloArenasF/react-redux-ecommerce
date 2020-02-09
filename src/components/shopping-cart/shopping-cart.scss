@@ -10,16 +10,11 @@
     width: 100vw;
     z-index: 3;
 
-    &__icon-close{
-        @include user-select;
-
+    .btn-close{
         cursor: pointer;
-        float: right;
-        height: 30px;
-        width: 30px;
 
-        path{
-            fill: $color-deep-space-sparkle;
+        .icon-close {
+            float: right;
         }
     }
 
