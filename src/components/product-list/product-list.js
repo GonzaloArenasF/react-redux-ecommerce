@@ -8,6 +8,9 @@ import * as loginService from '../../actions/user/login';
 // Stateless
 import { Book } from '../stateless/product/product';
 
+// Hooks
+import { CurrentDateTime } from '../hooks';
+
 // styles
 import './product-list.scss';
 
@@ -40,6 +43,7 @@ class ProductListSection extends Component {
                 <div className="row">
                     <div className="col-12">
                         <h1>Books / Best Sellers</h1>
+                        <CurrentDateTime />
                     </div>
                     <div className="col-12">
                         <p>
