@@ -64,7 +64,7 @@ class HeaderSection extends Component {
 
     render() {
         return (
-            <header>
+            <header data-test='header-section'>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-md-9">
@@ -87,6 +87,7 @@ class HeaderSection extends Component {
 }
 
 HeaderSection.propTypes = {
+    hasToken: PropTypes.bool.isRequired,
     isAccesing: PropTypes.bool,
     openShooping: PropTypes.bool,
     login: PropTypes.func,
