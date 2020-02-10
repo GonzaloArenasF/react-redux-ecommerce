@@ -17,11 +17,9 @@ const store = createStoreWithMiddleware(reducers);
 
 const App = () => (
   <Provider store={store}>
-    <main>
       <HeaderSection />
       <ProductListSection />
       <FooterSection />
-    </main>
   </Provider>
 );
 
