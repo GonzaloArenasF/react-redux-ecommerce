@@ -3,7 +3,7 @@ import * as loginService from "../actions/user/login";
 const tokenStoragedName = 'ecommerce-token';
 
 const initialState = {
-    hasToken: ''
+    hasToken: false
 }
 
 export function loginReducer(state = initialState, action) {
