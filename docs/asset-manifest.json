@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.96706cdd.chunk.css",
+    "main.js": "/static/js/main.1903e177.chunk.js",
+    "main.js.map": "/static/js/main.1903e177.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.521a07c1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.521a07c1.js.map",
+    "static/js/2.49c5fc65.chunk.js": "/static/js/2.49c5fc65.chunk.js",
+    "static/js/2.49c5fc65.chunk.js.map": "/static/js/2.49c5fc65.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1e7644b1941d34b5f4c08318c3f9f8fc.js": "/precache-manifest.1e7644b1941d34b5f4c08318c3f9f8fc.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.96706cdd.chunk.css.map": "/static/css/main.96706cdd.chunk.css.map",
+    "static/js/2.49c5fc65.chunk.js.LICENSE.txt": "/static/js/2.49c5fc65.chunk.js.LICENSE.txt",
+    "static/media/icon-check.c884f427.svg": "/static/media/icon-check.c884f427.svg",
+    "static/media/icon-close.18445307.svg": "/static/media/icon-close.18445307.svg",
+    "static/media/icon-logout.7d7c0ba2.svg": "/static/media/icon-logout.7d7c0ba2.svg",
+    "static/media/icon-user.827cf54f.svg": "/static/media/icon-user.827cf54f.svg",
+    "static/media/shopping-cart-adding.f1f7b9e7.svg": "/static/media/shopping-cart-adding.f1f7b9e7.svg",
+    "static/media/shopping-cart.fe53d7f0.svg": "/static/media/shopping-cart.fe53d7f0.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.521a07c1.js",
+    "static/js/2.49c5fc65.chunk.js",
+    "static/css/main.96706cdd.chunk.css",
+    "static/js/main.1903e177.chunk.js"
+  ]
+}
